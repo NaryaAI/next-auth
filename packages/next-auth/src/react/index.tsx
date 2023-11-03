@@ -57,6 +57,7 @@ const __NEXTAUTH: AuthClientConfig = {
   basePathServer: parseUrl(
     process.env.NEXTAUTH_URL_INTERNAL ?? process.env.NEXTAUTH_URL
   ).path,
+  requestOptions: {},
   _lastSync: 0,
   _session: undefined,
   _getSession: () => {},
@@ -342,9 +343,16 @@ export function SessionProvider(props: SessionProviderProps) {
     throw new Error("React Context is unavailable in Server Components")
   }
 
-  const { children, basePath, refetchInterval, refetchWhenOffline } = props
+  const {
+    children,
+    basePath,
+    refetchInterval,
+    refetchWhenOffline,
+    requestOptions,
+  } = props
 
   if (basePath) __NEXTAUTH.basePath = basePath
+  if (requestOptions) __NEXTAUTH.requestOptions = requestOptions
 
   /**
    * If session was `null`, there was an attempt to fetch it,

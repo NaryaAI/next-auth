@@ -67,6 +67,10 @@ export interface SessionProviderProps {
   baseUrl?: string
   basePath?: string
   /**
+   * A `fetch` compatible API to use when requesting the session.
+   */
+  requestOptions?: RequestInit
+  /**
    * A time interval (in seconds) after which the session will be re-fetched.
    * If set to `0` (default), the session is not polled.
    */

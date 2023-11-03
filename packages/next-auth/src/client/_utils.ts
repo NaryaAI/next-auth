@@ -6,6 +6,7 @@ export interface AuthClientConfig {
   basePath: string
   baseUrlServer: string
   basePathServer: string
+  requestOptions?: RequestInit
   /** Stores last session response */
   _session?: Session | null | undefined
   /** Used for timestamp since last sycned (in seconds) */
@@ -42,6 +43,7 @@ export async function fetchData<T = any>(
         "Content-Type": "application/json",
         ...(req?.headers?.cookie ? { cookie: req.headers.cookie } : {}),
       },
+      ...__NEXTAUTH.requestOptions,
     }
 
     if (req?.body) {
