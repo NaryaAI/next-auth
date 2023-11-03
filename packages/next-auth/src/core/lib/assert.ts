@@ -68,27 +68,27 @@ export function assertConfig(params: {
     )
   }
 
-  const callbackUrlParam = req.query?.callbackUrl as string | undefined
+  // const callbackUrlParam = req.query?.callbackUrl as string | undefined
 
-  const url = parseUrl(req.origin)
+  // const url = parseUrl(req.origin)
 
-  if (callbackUrlParam && !isValidHttpUrl(callbackUrlParam, url.base)) {
-    return new InvalidCallbackUrl(
-      `Invalid callback URL. Received: ${callbackUrlParam}`
-    )
-  }
+  // if (callbackUrlParam && !isValidHttpUrl(callbackUrlParam, url.base)) {
+  //   return new InvalidCallbackUrl(
+  //     `Invalid callback URL. Received: ${callbackUrlParam}`
+  //   )
+  // }
 
-  const { callbackUrl: defaultCallbackUrl } = defaultCookies(
-    options.useSecureCookies ?? url.base.startsWith("https://")
-  )
-  const callbackUrlCookie =
-    req.cookies?.[options.cookies?.callbackUrl?.name ?? defaultCallbackUrl.name]
+  // const { callbackUrl: defaultCallbackUrl } = defaultCookies(
+  //   options.useSecureCookies ?? url.base.startsWith("https://")
+  // )
+  // const callbackUrlCookie =
+  //   req.cookies?.[options.cookies?.callbackUrl?.name ?? defaultCallbackUrl.name]
 
-  if (callbackUrlCookie && !isValidHttpUrl(callbackUrlCookie, url.base)) {
-    return new InvalidCallbackUrl(
-      `Invalid callback URL. Received: ${callbackUrlCookie}`
-    )
-  }
+  // if (callbackUrlCookie && !isValidHttpUrl(callbackUrlCookie, url.base)) {
+  //   return new InvalidCallbackUrl(
+  //     `Invalid callback URL. Received: ${callbackUrlCookie}`
+  //   )
+  // }
 
   let hasCredentials, hasEmail
   let hasTwitterOAuth2
