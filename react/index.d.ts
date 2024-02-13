@@ -43,7 +43,7 @@ export declare type GetSessionParams = CtxOrReq & {
     triggerEvent?: boolean;
     broadcast?: boolean;
 };
-export declare function getSession(params?: GetSessionParams): Promise<Session | null>;
+export declare function getSession(params?: GetSessionParams): any;
 /**
  * Returns the current Cross Site Request Forgery Token (CSRF Token)
  * required to make POST requests (e.g. for signing in and signing out).
@@ -60,7 +60,7 @@ export declare function getCsrfToken(params?: CtxOrReq): Promise<string | undefi
  *
  * [Documentation](https://next-auth.js.org/getting-started/client#getproviders)
  */
-export declare function getProviders(): Promise<Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider> | null>;
+export declare function getProviders(): Promise<Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider> | null | undefined>;
 /**
  * Client-side method to initiate a signin flow
  * or send the user to the signin page listing all possible providers.

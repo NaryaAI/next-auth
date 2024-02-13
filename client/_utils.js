@@ -68,31 +68,39 @@ function _fetchData() {
           case 10:
             data = _context.sent;
 
-            if (res.ok) {
+            if (!(res.status === 401)) {
               _context.next = 13;
+              break;
+            }
+
+            return _context.abrupt("return", null);
+
+          case 13:
+            if (res.ok) {
+              _context.next = 15;
               break;
             }
 
             throw data;
 
-          case 13:
+          case 15:
             return _context.abrupt("return", Object.keys(data).length > 0 ? data : null);
 
-          case 16:
-            _context.prev = 16;
+          case 18:
+            _context.prev = 18;
             _context.t0 = _context["catch"](2);
             logger.error("CLIENT_FETCH_ERROR", {
               error: _context.t0,
               url: url
             });
-            return _context.abrupt("return", null);
+            return _context.abrupt("return", undefined);
 
-          case 20:
+          case 22:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[2, 16]]);
+    }, _callee, null, [[2, 18]]);
   }));
   return _fetchData.apply(this, arguments);
 }

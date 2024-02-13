@@ -35,7 +35,7 @@ export async function fetchData<T = any>(
   __NEXTAUTH: AuthClientConfig,
   logger: LoggerInstance,
   { ctx, req = ctx?.req }: CtxOrReq = {}
-): Promise<T | null> {
+): Promise<T | null | undefined> {
   const url = `${apiBaseUrl(__NEXTAUTH)}/${path}`
   try {
     const options: RequestInit = {
@@ -53,11 +53,14 @@ export async function fetchData<T = any>(
 
     const res = await fetch(url, options)
     const data = await res.json()
+    if (res.status === 401) {
+      return null
+    }
     if (!res.ok) throw data
     return Object.keys(data).length > 0 ? data : null // Return null if data empty
   } catch (error) {
     logger.error("CLIENT_FETCH_ERROR", { error: error as Error, url })
-    return null
+    return undefined
   }
 }
 

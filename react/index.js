@@ -165,6 +165,20 @@ function _getSession2() {
           case 2:
             session = _context3.sent;
 
+            if (!(session === undefined)) {
+              _context3.next = 7;
+              break;
+            }
+
+            _context3.next = 6;
+            return new Promise(function (resolve) {
+              return setTimeout(resolve, 1000);
+            });
+
+          case 6:
+            return _context3.abrupt("return", getSession(params));
+
+          case 7:
             if ((_params$broadcast = params === null || params === void 0 ? void 0 : params.broadcast) !== null && _params$broadcast !== void 0 ? _params$broadcast : true) {
               broadcast.post({
                 event: "session",
@@ -176,7 +190,7 @@ function _getSession2() {
 
             return _context3.abrupt("return", session);
 
-          case 5:
+          case 9:
           case "end":
             return _context3.stop();
         }

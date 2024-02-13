@@ -166,6 +166,11 @@ export async function getSession(params?: GetSessionParams) {
     logger,
     params
   )
+  // Retry `fetchData` to prevent network issue
+  if (session === undefined) {
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+    return getSession(params)
+  }
   if (params?.broadcast ?? true) {
     broadcast.post({ event: "session", data: { trigger: "getSession" } })
   }
